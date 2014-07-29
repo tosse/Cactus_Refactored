@@ -143,6 +143,7 @@ class DeployTask(BaseTask):
                         scp.stat(rdir)
                     except IOError:
                         scp.mkdir(rdir)
+                    scp.chmod(rdir, 0775)
                 for f in files:
                     src = os.path.abspath(os.path.join(path, f))
                     dest = to_unix_path(os.path.join(remote_base, remote_path, f))
@@ -157,6 +158,7 @@ class DeployTask(BaseTask):
                             src,
                             dest
                         )
+                        scp.chmod(dest, 0775)
                     else:
                          logging.info("DISCARD: {0}".format(src))
 
