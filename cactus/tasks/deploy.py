@@ -107,7 +107,7 @@ class DeployTask(BaseTask):
                         host,
                         port=port,
                         user=cls.conf("user"),
-                        privkey=cls.conf("private_key", "{home}/.ssh/id_rsa").format(home=homedir),
+                        privkey=cls.conf("private_key").format(home=homedir),
                     )
                 except paramiko.PasswordRequiredException:
                     ssh = createSSHClient(
